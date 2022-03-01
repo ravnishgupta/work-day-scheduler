@@ -1,5 +1,4 @@
 $("#currentDay").text(moment().format('dddd, MMMM Do'));
-//var dailyTasks = [];
 var savedTasks = new Array();
 
 function createDiv(){
