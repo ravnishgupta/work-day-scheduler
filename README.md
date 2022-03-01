@@ -30,4 +30,4 @@ WHEN I refresh the page
 THEN the saved events persist
 
 ```
-## :point_right:  Github [link](https://ravnishgupta.github.io/password-generator/) to the deployed application
+## :point_right:  Github [link](https://ravnishgupta.github.io/work-day-scheduler/) to the deployed application
