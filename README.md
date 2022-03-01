@@ -1,9 +1,10 @@
 # Work Day Scheduler
+![Image](./assets/images/schedulr.png "Work Day Scheduler")
 
 ## Overview
 The work day scheduler is a simple calendar application that allows a user to save events for each hour of the day. This app will run in the browser and feature dynamically updated HTML and CSS powered by `jQuery`.
 
-The application also uses `Bootstrap` framework for CSS manipulation and `Moment.js` library for date and time events
+The application also uses `Bootstrap` framework for CSS manipulation and `Moment.js` library for date and time events. Tasks are stored in and retrieved from `localStorage`.
 
 ### User Story
 ```
@@ -29,4 +30,4 @@ WHEN I refresh the page
 THEN the saved events persist
 
 ```
-## :point_right:  Github [link](https://ravnishgupta.github.io/work-day-scheduler/) to the deployed application
+## :point_right:  Github [link](https://ravnishgupta.github.io/password-generator/) to the deployed application
