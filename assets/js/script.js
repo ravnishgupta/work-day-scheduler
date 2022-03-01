@@ -13,6 +13,7 @@ function createDiv(){
     }
 
     //populate inner divs
+     
      for (var i=9; i<18; i++) {
 
         currHr = moment().format('HH')
@@ -55,13 +56,13 @@ function createDiv(){
 
 
 $(".container").on("click", "i", function(){
-    //var timeID = $(this).attr("data-time-id");
     debugger;
-    var obj = $(this).parents("span");
+    var timeID = $(this).attr("data-time-id");
+    var text =  $('span').attr('data-span-time-id', timeID).text();
+    saveTasks(timeID, text);
 });
 
 $(".container").on("click", "span", function() {
-
     var text = $(this)
     .text()
     .trim();
@@ -79,6 +80,7 @@ $(".container").on("click", "span", function() {
 // editable field was un-focused
 $(".container").on("blur", "textarea", function() {
     // get current value of textarea
+
     var text = $(this).val();
     var timeID = $(this).attr('data-span-time-id');
 
@@ -94,23 +96,15 @@ $(".container").on("blur", "textarea", function() {
 
 });
 
-function saveTasks(timeID) {
-   // var taskSpan = $("span");
-   console.log($('.container').parents().attr("data-span-time-id", '0'))
-    //$("span").find("[data-time-id='" + timeID + "']" );
-    //console.log(taskSpan);
+function saveTasks(timeID, task) {
+    var oTask = {}
+    oTask.timeID = timeID;
+    oTask.task = task;
 
-
-   //console.log( $("span").find("[data-time-id='" + timeID + "']" ));
-    
-    // for (var i=0; i<taskSpan.length; i++) {
-    //     var thisTask = {};
-    //     thisTask.time = taskSpan[i].getAttribute("data-time-id");
-    //     thisTask.description = taskSpan[i].textContent;
-    //     dailyTasks.push(thisTask);
-    // }
-
+    dailyTasks.push(oTask);
+    console.log(oTask);
 }
 
+
 createDiv();
-//saveTasks();
+
