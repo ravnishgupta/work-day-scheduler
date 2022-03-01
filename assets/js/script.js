@@ -119,9 +119,9 @@ function saveTasks(timeID, task) {
         localStorage.setItem('dailyTasks', JSON.stringify(savedTasks));
     }
     catch (e) {
-        alert("Something went wrong. Please try again")
+        alert("Something went wrong! Please try again.")
     }
-    alert("Task saved successfully")
+    alert("Task saved successfully!")
 }
 
 function loadTasks() {
