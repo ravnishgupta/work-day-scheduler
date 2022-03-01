@@ -106,7 +106,7 @@ $(".container").on("blur", "textarea", function() {
 
 function saveTasks(timeID, task) {
     try {
-      var tempObj = savedTasks.find(x => x.timeID === timeID); //savedTasks.find( ({ timeID }) => timeID === timeID.toString())
+      var tempObj = savedTasks.find(x => x.timeID === timeID); 
       tempObj.task = task;
     }
     catch (e) {
