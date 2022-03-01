@@ -1,5 +1,6 @@
 $("#currentDay").text(moment().format('dddd, MMMM Do'));
-var dailyTasks = [];
+//var dailyTasks = [];
+var savedTasks = new Array();
 
 function createDiv(){
     var mainDiv = $(".container");
@@ -36,6 +37,7 @@ function createDiv(){
             spanEl.className = "col-10 future";
         }
         spanEl.className = spanEl.className + " task";
+        
 
         var saveDiv = document.createElement("div");
         var iEl  = document.createElement("i");
@@ -45,20 +47,26 @@ function createDiv(){
 
         saveDiv.className = "col-1 saveBtn"
         saveDiv.id = i;
+
+        try {
+            spanEl.innerText = savedTasks.find( ({ timeID }) => timeID === (i-9).toString()).task;
+        }
+        catch (e) {
+            spanEl.innerText = '';
+        }
+    
         saveDiv.append(iEl)
         innerDiv.append(timeDiv);
         innerDiv.append(spanEl);
         innerDiv.append(saveDiv);
 
     }
-
 }
 
 
 $(".container").on("click", "i", function(){
-    debugger;
     var timeID = $(this).attr("data-time-id");
-    var text =  $('span').attr('data-span-time-id', timeID).text();
+    var text = $(`[data-span-time-id=${timeID}]`).text()
     saveTasks(timeID, text);
 });
 
@@ -97,14 +105,31 @@ $(".container").on("blur", "textarea", function() {
 });
 
 function saveTasks(timeID, task) {
-    var oTask = {}
-    oTask.timeID = timeID;
-    oTask.task = task;
-
-    dailyTasks.push(oTask);
-    console.log(oTask);
+    try {
+      var tempObj = savedTasks.find(x => x.timeID === timeID); //savedTasks.find( ({ timeID }) => timeID === timeID.toString())
+      tempObj.task = task;
+    }
+    catch (e) {
+        var oTask = {};
+        oTask.timeID = timeID;
+        oTask.task = task;
+        savedTasks.push(oTask);
+    }
+    try {
+        localStorage.setItem('dailyTasks', JSON.stringify(savedTasks));
+    }
+    catch (e) {
+        alert("Something went wrong. Please try again")
+    }
+    alert("Task saved successfully")
 }
 
-
+function loadTasks() {
+    if (localStorage.dailyTasks) {
+        savedTasks = JSON.parse(localStorage.getItem('dailyTasks'))
+    }
+}
+loadTasks();
 createDiv();
+
 
