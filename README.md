@@ -1,5 +1,5 @@
 # Work Day Scheduler
-![Image](./assets/images/schedulr.png "Work Day Scheduler")
+![Image](./assets/images/scheduler.png "Work Day Scheduler")
 
 ## Overview
 The work day scheduler is a simple calendar application that allows a user to save events for each hour of the day. This app will run in the browser and feature dynamically updated HTML and CSS powered by `jQuery`.
