@@ -1,6 +1,5 @@
-//$( document ).ready(function() {
-    $("#currentDay").text(moment().format('dddd, MMMM Do'));
-//});
+$("#currentDay").text(moment().format('dddd, MMMM Do'));
+var dailyTasks = [];
 
 function createDiv(){
     var mainDiv = $(".container");
@@ -18,7 +17,7 @@ function createDiv(){
 
         currHr = moment().format('HH')
         var spanEl = document.createElement("span");
-        var pEl = document.createElement("p");
+       // var pEl = document.createElement("p");
 
         //spanEl.append(pEl);
         var innerDiv = $("#" + i);
@@ -27,26 +26,28 @@ function createDiv(){
         timeDiv.id = i;
         timeDiv.textContent = moment(i, ["HH.mm"]).format("h A");
     
-        var taskDiv = document.createElement("div");
-        taskDiv.setAttribute("data-time-id", i.toString());
+        // var taskDiv = document.createElement("div");
+        // taskDiv.setAttribute("data-time-id", i.toString());
+        spanEl.setAttribute("data-time-id", i.toString())
         //taskDiv.innerHTML = "<p>";
 
         if (currHr>i) {
-            taskDiv.className = "col-10 past";
+          //  taskDiv.className = "col-10 past";
             spanEl.className = "col-10 past";
         }
         else if (currHr === i) {
-            taskDiv.className = "col-10 present";
+           // taskDiv.className = "col-10 present";
             spanEl.className = "col-10 present";
         }
         else { 
-            taskDiv.className = "col-10 future";
+          //  taskDiv.className = "col-10 future";
             spanEl.className = "col-10 future";
         }
-        taskDiv.className = taskDiv.className + " task"
+       // taskDiv.className = taskDiv.className + " task"
+        spanEl.className = spanEl.className + " task"
 
-       pEl.className = taskDiv.className;
-        taskDiv.append(pEl);
+      // pEl.className = taskDiv.className;
+      //  taskDiv.append(pEl);
 
         var saveDiv = document.createElement("div");
         saveDiv.className = "col-1 saveBtn fa fa-save"
@@ -87,4 +88,17 @@ $(".container").on("blur", "textarea", function() {
 
 });
 
+function saveTasks() {
+    var taskSpan = $(".task");
+    
+    for (var i=0; i<taskSpan.length; i++) {
+        var thisTask = {};
+        thisTask.time = taskSpan[i].getAttribute("data-time-id");
+        thisTask.description = taskSpan[i].textContent;
+        dailyTasks.push(thisTask);
+    }
+
+}
+
 createDiv();
+saveTasks();
